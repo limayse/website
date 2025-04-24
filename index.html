@@ -1,25 +1,500 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Site Under Construction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limay SE - Software & Data Engineering Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            margin-top: 0;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: #4b5563;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        .section-title {
             text-align: center;
-            padding-top: 20%;
-            background-color: #f4f4f4;
-            color: #333;
+            margin-bottom: 3rem;
         }
-        h1 {
-            font-size: 36px;
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-color);
         }
-        p {
-            font-size: 18px;
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background-color: var(--light-bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .service-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: var(--text-color);
+                cursor: pointer;
+            }
+
+            .mobile-nav {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .mobile-nav.active {
+                display: block;
+            }
+
+            .mobile-nav a {
+                display: block;
+                padding: 1rem;
+                text-decoration: none;
+                color: var(--text-color);
+                border-bottom: 1px solid #eee;
+            }
+
+            .mobile-nav a:last-child {
+                border-bottom: none;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 0 1rem;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            .mobile-nav {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Site Under Construction</h1>
-    <p>We are working hard to bring you a new and improved website. Please check back soon!</p>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Limay SE</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div class="mobile-nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your Business with Advanced Software & Data Solutions</h1>
+                <p>We specialize in building robust software systems and data engineering solutions that drive business growth and innovation.</p>
+                <a href="#contact" class="cta-button">Start Your Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Us</h2>
+            </div>
+            <div class="about-content">
+                <div>
+                    <h3>Our Expertise</h3>
+                    <p>At Limay SE, we combine cutting-edge technology with deep industry knowledge to deliver exceptional software and data engineering solutions. Our team of experienced engineers specializes in building scalable, secure, and efficient systems that help businesses thrive in the digital age.</p>
+                </div>
+                <div>
+                    <h3>Our Mission</h3>
+                    <p>We are committed to helping businesses leverage the power of technology through custom software development and data engineering solutions. Our mission is to deliver innovative, reliable, and scalable solutions that drive business growth and create lasting value for our clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Custom Software Development</h3>
+                    <p>Tailored software solutions designed to meet your specific business needs, from web applications to enterprise systems.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Data Engineering</h3>
+                    <p>End-to-end data solutions including ETL pipelines, data warehousing, and analytics infrastructure.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud Solutions</h3>
+                    <p>Cloud-native applications and infrastructure, ensuring scalability, security, and optimal performance.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Advanced AI solutions and machine learning models to automate processes, gain insights, and drive innovation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p style="margin-top: 1rem; font-size: 1.1rem; color: #4b5563;">Fill out the form below and we will contact you as soon as possible.</p>
+            </div>
+            <div class="contact-form">
+                <form action="mailto:contact@limay.io" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <div style="display: flex; gap: 10px;">
+                            <select id="country-code" name="country-code" style="width: 100px; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem;">
+                                <option value="+54">+54 (AR)</option>
+                                <option value="+1">+1 (US)</option>
+                                <option value="+44">+44 (UK)</option>
+                                <option value="+49">+49 (DE)</option>
+                                <option value="+995">+995 (GE)</option>
+                                <option value="+353">+353 (IE)</option>
+                                <option value="+33">+33 (FR)</option>
+                                <option value="+34">+34 (ES)</option>
+                                <option value="+39">+39 (IT)</option>
+                                <option value="+41">+41 (CH)</option>
+                                <option value="+64">+64 (NZ)</option>
+                                <option value="+46">+46 (SE)</option>
+                                <option value="+47">+47 (NO)</option>
+                                <option value="+48">+48 (PL)</option>
+                            </select>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9]*" inputmode="numeric" required 
+                                style="flex: 1; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem;">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Type</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service</option>
+                            <option value="software">Custom Software Development</option>
+                            <option value="data">Data Engineering</option>
+                            <option value="cloud">Cloud Solutions</option>
+                            <option value="ai">AI & Machine Learning</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Limay SE. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.mobile-nav').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.mobile-nav').classList.remove('active');
+            });
+        });
+
+        // Phone number validation
+        document.getElementById('phone').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    </script>
 </body>
 </html>
